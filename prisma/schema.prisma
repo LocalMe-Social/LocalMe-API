@@ -6,13 +6,31 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int     @default(autoincrement()) @id
-  email     String  @unique
-  password  String
-  username  String  @unique
+model Users {
+  id String @id @default(uuid())
+  email String @unique
+  username String
+  role String @default("USER")
+  password String
+  fullname String
+  avatarUrl String?
+  profileBio String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts Posts[]
+}
+
+model Posts {
+  id String @id @default(uuid())
+  type String
+  creator Users @relation(fields: [creatorId], references: [id])
+  creatorId String
+  description String
+  photoUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
