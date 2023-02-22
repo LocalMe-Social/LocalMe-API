@@ -7,8 +7,8 @@ const { authenticate } = feathersAuthentication.hooks;
 export default {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
-    get: [ authenticate('jwt') ],
+    find: [],
+    get: [],
     create: [ authenticate('jwt') ],
     update: [ authenticate('jwt') ],
     patch: [ authenticate('jwt') ],

@@ -9,7 +9,7 @@ export default {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
-    get: [ authenticate('jwt') ],
+    get: [],
     create: [ hashPassword('password') ],
     update: [ hashPassword('password'), authenticate('jwt') ],
     patch: [ hashPassword('password'), authenticate('jwt') ],
